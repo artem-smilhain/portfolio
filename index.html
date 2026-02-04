@@ -1,11 +1,255 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TEST</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --text: rgba(255,255,255,.95);
+      --muted: rgba(255,255,255,.7);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+
+    /* GRID — NO GAPS */
+	.grid {
+	  display: grid;
+	  grid-template-columns: repeat(2, 1fr); /* 3 проекта в ряд */
+	  width: 100%;
+	}
+
+	/* Tablet */
+	@media (max-width: 1024px) {
+	  .grid {
+	    grid-template-columns: repeat(2, 1fr);
+	  }
+	}
+
+	/* Mobile */
+	@media (max-width: 640px) {
+	  .grid {
+	    grid-template-columns: 1fr;
+	  }
+	}
+
+    /* TILE */
+    .tile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1; /* ВСЕ ОДИНАКОВЫЕ */
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* IMAGE */
+    .tile__bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.01);
+      transition: transform .5s ease;
+    }
+
+    /* OVERLAY */
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.15) 0%,
+          rgba(0,0,0,.45) 55%,
+          rgba(0,0,0,.85) 100%
+        );
+      transition: opacity .4s ease;
+    }
+
+    /* CONTENT */
+    .tile__content {
+      position: absolute;
+      inset: 0;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      z-index: 1;
+    }
+
+    .tile__title {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .tile__desc {
+      margin-top: 4px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted);
+      max-width: 36ch;
+    }
+
+    /* HOVER */
+    .tile:hover .tile__bg {
+      transform: scale(1.08);
+    }
+
+    .tile:hover::after {
+      opacity: 0.9;
+    }
+    a{
+    	cursor: pointer;
+    }
+    /* SCROLL REVEAL */
+.tile {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.tile.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+  </style>
 </head>
 <body>
-	hello kurwas
+
+  <section class="grid">
+
+    <a class="tile" href="https://viibes.study" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/viibes.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">VIIBES Study</div>
+        <div class="tile__desc">Corporate & landing website for an education consulting service.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=32-4563&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/tsalikov.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Travel Landing</div>
+        <div class="tile__desc">Conversion-focused landing page for a travel project.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=32-5798&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/samsonova.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Samsonova Pictures</div>
+        <div class="tile__desc">Portfolio website for a professional photographer.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://logoscentrum.com" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/logos.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Logoscentrum</div>
+        <div class="tile__desc">Branding and website for Slovak language courses.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=56-5967&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/glass.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Design of glass</div>
+        <div class="tile__desc">Landing page for a custom window solutions company.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://kpt.fvt.tuke.sk" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/tuke.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Katedra procesnej techniky</div>
+        <div class="tile__desc">Department website for a university faculty in Košice</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=59-7954&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/dance.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Esfi dance</div>
+        <div class="tile__desc">Personal website for a dance coach in Poland.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://goavto.com.ua/" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/goavto.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">GoAvto</div>
+        <div class="tile__desc">E-commerce website for tires and wheels.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=32-9241&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/voda.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">AquaplaStore</div>
+        <div class="tile__desc">Website for bottled water delivery service.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=57-7661&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/towers.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Twin Towers</div>
+        <div class="tile__desc">Corporate website for a real estate development company.</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.figma.com/proto/bVNggCLwtF5EMQlIRXiMMv/UI-UX-portfolio?page-id=0%3A1&node-id=56-6854&viewport=2781%2C-7872%2C0.21&t=LLE7F8cJBwsmup9Z-1&scaling=scale-down-width&content-scaling=fixed" target="_blank">
+      <div class="tile__bg" style="background-image:url('assets/zuby.png')"></div>
+      <div class="tile__content">
+        <div class="tile__title">Mr. Dent Clinic</div>
+        <div class="tile__desc">Website design for a dental clinic.</div>
+      </div>
+    </a>
+
+ 
+
+  </section>
+
 </body>
+<script>
+  const tiles = document.querySelectorAll('.tile');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // небольшая задержка для "stagger" эффекта
+          setTimeout(() => {
+            entry.target.classList.add('is-visible');
+          }, index * 80);
+
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2
+    }
+  );
+
+  tiles.forEach(tile => observer.observe(tile));
+</script>
 </html>
